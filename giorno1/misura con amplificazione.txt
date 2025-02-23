@@ -1,0 +1,10 @@
+2.2V (amplx1000)
+R = FWHM / Xm = 13.3/418 = 3.18 %
+vogliamo verificare che dE/E non varia con l'amplificazione
+
+1.1V (amplx500)
+R = FWHM / Xm = 7.1/206.9 = 3.4 % 
+
+
+2.2V (amplx1000)
+R = FWHM / Xm = 13.1/413 = 3.17 %
