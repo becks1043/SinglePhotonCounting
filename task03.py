@@ -34,7 +34,7 @@ fig, axes = plt.subplots(2, 1, figsize=(8, 8), sharex=True, gridspec_kw={'height
 
 axes[0].plot(xx, y_Ano, label='senza alimentazione')
 axes[0].set_ylabel("Ampiezza [adim.]", size=15)
-axes[0].legend(loc='best')
+axes[0].legend(loc='best', fontsize=15)
 axes[0].set_ylim(-1, 13000)
 axes[0].set_xlim(0, 800)
 
@@ -43,7 +43,7 @@ axes[1].set_ylim(-1, 13000)
 axes[1].set_xlim(0, 800)
 axes[1].set_xlabel("Canali", size=15)
 axes[1].set_ylabel("Ampiezza [adim.]", size=15)
-axes[1].legend(loc='best')
-plt.savefig("calibrazione-giorno2.pdf", format="pdf", bbox_inches="tight")
+axes[1].legend(loc='best', fontsize=15)
+#plt.savefig("calibrazione-giorno2.pdf", format="pdf", bbox_inches="tight")
 plt.show()
 plt.close()

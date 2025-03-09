@@ -26,7 +26,7 @@ dB = [31, 35, 36, 37, 38, 41, 41, 31, 35]
 
 yy = V + Vbis
 xx = Chan + Chanbis
-ERR = Ver + Vbiserr
+ERR = Chaner + Chanbiser
 
 
 # vogliamo leggere i file A1...A7 e plottarli ignorando le prime 12 e ultime 16 righe
@@ -49,7 +49,7 @@ plt.xlabel("Canali", size=15)
 plt.ylabel("Ampiezza [u.a.]", size=15)
 plt.xlim(0, 700)
 #plt.title(f"Dati task01 dei file A1-A7")
-plt.legend()
+plt.legend(fontsize=15, bbox_to_anchor=(1.14, 1.1))
 plt.savefig("task1.pdf", format="pdf", bbox_inches="tight")
 plt.close()
 
@@ -90,14 +90,14 @@ fig, axes = plt.subplots(2, 1, figsize=(8, 8), sharex=True, gridspec_kw={'height
 axes[0].errorbar(Chan, V, Ver, Chaner, fmt='ro', label='acquisizioni', zorder=3)
 axes[0].errorbar(Chanbis, Vbis, Vbiserr, Chanbiser, fmt='bo', label='acquisizioni bis', zorder=2)
 axes[0].plot(Chan, linear(Chan, m, q), label='fit lineare')
-axes[0].set_ylabel("Tensione $\Delta$V [mV]  ", size=15)
+axes[0].set_ylabel("Tensione $\Delta$V [mV]  ", fontsize=15)
 axes[0].legend(loc='upper left')
 
 axes[1].axhline(0, color='black', linestyle='--')
 axes[1].errorbar(Chan, residui, fmt='ro')
 axes[1].errorbar(Chanbis, resfinti, fmt='bo', zorder=2)
 axes[1].set_xlabel("Canale del picco $X_m$ [channels]", size=15)
-axes[1].set_ylabel("Residui", size=15)
+axes[1].set_ylabel("Residui", fontsize=15)
 plt.savefig("calibrazione.pdf", format="pdf", bbox_inches="tight")
 #plt.show()
 plt.close()

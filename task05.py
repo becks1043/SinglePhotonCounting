@@ -34,12 +34,13 @@ bins = np.linspace(0, len(y_data), len(y_data))
 # PLOT
 plt.figure(figsize=(10, 6))
 for i in range(9):
-    plt.plot(bins, all_data[i][:], label=f"Attenuazione di {550*lastrine[i]} um di rame")
+    plt.plot(bins, all_data[i][:], label=f"Rame {550*lastrine[i]}+/-{10*lastrine[i]} um")
 plt.xlabel("Canali", size=15)
 plt.ylabel("Ampiezza [u.a.]", size=15)
-plt.xlim(315, 375) 
+plt.xlim(315, 385) 
+plt.ylim(0, 20000)
 #plt.title(f"Dati task01 dei file A1-A7")
-plt.legend()
+plt.legend(fontsize=15, bbox_to_anchor=(1.14, 1.1))
 plt.savefig("task5.pdf", format="pdf", bbox_inches="tight")
 plt.show()
 plt.close()
@@ -47,8 +48,8 @@ plt.close()
 #%% VOGLIO PRENDERE I PICCHI DI DATI ATTENUAZIONE 
 
 # area sottesa ai picchi, presa grazie a roi di maestro
-Agross = [313640, 150743, 72151, 35269, 17127, 8266, 4125, 1969, 467, 152]
-Anet = [298313, 145160, 69860, 34341, 16576, 7990, 3994, 1911, 380, 50]
+Agross = np.array([313640, 150743, 72151, 35269, 17127, 8266, 4125, 1969, 467, 152])
+Anet = np.array([298313, 145160, 69860, 34341, 16576, 7990, 3994, 1911, 380, 50])
 
 mu = 1.593 * 8.96 * 0.0001 # cm^2/g * g/cm^3 * cm/um
 spessore = 550 * np.array(lastrine) # micrometri
@@ -63,12 +64,14 @@ print(popt2, '\n', np.sqrt(np.diag(pcov2)), '\n')
 xx = np.linspace(0, max(spessore), len(spessore)*100)
 
 # verifico su questo l'attenuazione o facendo i fit dei picchi?
-print(espo(xx, *popt1))
-plt.figure()
-plt.errorbar(spessore, Agross, fmt='o', label='gross area', zorder=2)
-plt.errorbar(spessore, Anet, fmt='o', label='net area', zorder=2)
+plt.figure(figsize=(10, 6))
+plt.errorbar(spessore, Agross, np.sqrt(Agross), fmt='o', label='gross area', zorder=2)
+plt.errorbar(spessore, Anet, np.sqrt(Anet), fmt='o', label='net area', zorder=2)
 plt.plot(xx, espo(xx, *popt1), color='#A9A9A9', zorder=1)
 plt.plot(xx, espo(xx, *popt2), color='#A9A9A9', zorder=1)
+plt.ylabel('Area sottesa al picco [u.a.]', size=15)
+plt.xlabel(r'Spessore di rame [$\mu$m]', size=15)
+plt.legend(fontsize=15)
 plt.savefig("attenuazione.pdf", format="pdf", bbox_inches="tight")
 plt.show()
 plt.close()
